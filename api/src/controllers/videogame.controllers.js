@@ -3,8 +3,22 @@ const { Videogame } = require("../db.js");
 
 const getVideoGame = async (req, res) => {
   try {
-    const allGame = await Videogame.findAll();
-    res.status(200).json(allGame);
+    const { name } = req.query;
+    if (!name) {
+      const allGame = await Videogame.findAll();
+      res.status(200).json(allGame);
+    } else {
+      const getByNameGame = await Videogame.findAll({
+        where: {
+          name: {
+            //sirver para buscar en minusculas y mayusculas
+            [Sequelize.Op.iLike]: `%${name}%`,
+          },
+        },
+      });
+
+      res.status(200).json(getByNameGame);
+    }
   } catch (error) {
     res.status(404).send(error.message);
   }
