@@ -7,8 +7,8 @@ export const Nav = () => {
     <div className={style.container}>
       <div className={style.container_Link}>
         <Link to="/home">Home</Link>
-        <Link to="/card">Card</Link>
-        <Link to="/">Inicio</Link>
+        <Link to="/about">About</Link>
+        <Link to="/Contacto">Contacto</Link>
       </div>
     </div>
   );

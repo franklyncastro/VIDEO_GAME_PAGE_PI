@@ -6,7 +6,7 @@
 
 .container{
     padding: 20px;
-    background-color: #1d1d1deb;
+    background-color: rgba(220, 20, 60, 0.905);
 }
 .container_Link{
     display: flex;
@@ -18,8 +18,9 @@ a{
     text-decoration: none;
     font-size: 28px;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 a:hover{
-    color: chocolate;
+    color: #d2c10e;
 }
