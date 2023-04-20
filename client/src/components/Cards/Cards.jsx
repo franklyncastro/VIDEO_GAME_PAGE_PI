@@ -1,11 +1,9 @@
 import React from 'react'
 
-const Landing = () => {
+export const Cards = () => {
   return (
     <div>
-      Landing
+        <h1>Cards Component</h1>
     </div>
   )
 }
-
-export default Landing

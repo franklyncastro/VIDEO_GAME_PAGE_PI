@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    padding: 20px;
+    background-color: #1d1d1deb;
+}
+.container_Link{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+a:hover{
+    color: chocolate;
+}
