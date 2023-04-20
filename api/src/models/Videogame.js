@@ -14,31 +14,28 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      image: {
-        type: DataTypes.TEXT,
-        defaultValue: "https://images2.alphacoders.com/106/1064201.png",
-      },
-      platforms: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        unique: true
       },
       description: {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      platforms: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      image: {
+        type: DataTypes.TEXT,
+        defaultValue: "https://images2.alphacoders.com/106/1064201.png",
+      },
       date: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       rating: {
         type: DataTypes.FLOAT,
-        allowNull: false
+        allowNull: false,
       },
-      genres: {
-        type: DataTypes.STRING,
-        allowNull: false
-      }
     },
     { timestamps: false }
   );

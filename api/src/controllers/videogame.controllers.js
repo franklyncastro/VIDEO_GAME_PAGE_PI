@@ -1,6 +1,7 @@
 const { Sequelize } = require("sequelize");
 const { Videogame } = require("../db.js");
 
+//Ruta Get Buscar por nombre
 const getVideoGame = async (req, res) => {
   try {
     const { name } = req.query;
@@ -24,6 +25,7 @@ const getVideoGame = async (req, res) => {
   }
 };
 
+//Ruta Post crear VideoGame
 const createVideogame = async (req, res) => {
   try {
     const { name, image, platforms, description, date, rating, genres } =
@@ -45,4 +47,15 @@ const createVideogame = async (req, res) => {
   }
 };
 
-module.exports = { getVideoGame, createVideogame };
+const getVideogameById = async () => {
+  try {
+    const { id } = req.params;
+
+    const searchGameById = await Videogame.findByPk(id);
+    
+    res.status(200).json(searchGameById);
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+};
+module.exports = { getVideoGame, createVideogame, getVideogameById };
