@@ -31,17 +31,30 @@ const createVideogame = async (req, res) => {
     const { name, image, platforms, description, date, rating, genres } =
       req.body;
 
-    const newGame = await Videogame.create({
-      name,
-      image,
-      platforms,
-      description,
-      date,
-      rating,
-      genres,
-    });
-
-    res.status(200).json(newGame);
+    if (
+      !name ||
+      !image ||
+      !platforms ||
+      !description ||
+      !date ||
+      !rating ||
+      !genres
+    ) {
+      throw new Error(
+        "Los datos no estan completos, todos los campos son obligatorios, favor verificar."
+      );
+    } else {
+      const newGame = await Videogame.create({
+        name,
+        image,
+        platforms,
+        description,
+        date,
+        rating,
+        genres,
+      });
+      res.status(200).json(newGame);
+    }
   } catch (error) {
     res.status(404).send(error.message);
   }
@@ -52,10 +65,11 @@ const getVideogameById = async () => {
     const { id } = req.params;
 
     const searchGameById = await Videogame.findByPk(id);
-    
+
     res.status(200).json(searchGameById);
   } catch (error) {
     res.status(404).send(error.message);
   }
 };
+
 module.exports = { getVideoGame, createVideogame, getVideogameById };

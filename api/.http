@@ -1,15 +1,20 @@
-GET https://example.com/comments/1 HTTP/1.1
+GET http://localhost:3001/videogames HTTP/1.1
 
 ###
 
-GET https://example.com/topics/1 HTTP/1.1
+GET http://localhost:3001/videogames/2 HTTP/1.1
 
 ###
 
-POST https://example.com/comments HTTP/1.1
+POST http://localhost:3001/videogames HTTP/1.1
 content-type: application/json
 
 {
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+	"name": "GTA V",
+	"image": "https://images7.alphacoders.com/439/439636.jpg",
+	"platforms": "PS4, PS5, PC",
+	"description": "Multijugador Online, mayores de 18, se recomienda discrecion",
+	"date": "03-09-2015",
+	"rating": 9.8,
+	"genres": "Accion, Disparo, Multijugador"
 }
