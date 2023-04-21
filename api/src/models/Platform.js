@@ -4,11 +4,11 @@ module.exports = (sequelize) => {
   sequelize.define(
     "platform",
     {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
+      // id: {
+      //   type: DataTypes.INTEGER,
+      //   autoIncrement: true,
+      //   primaryKey: true,
+      // },
       name: {
         type: DataTypes.STRING,
         allowNull: false,

@@ -17,20 +17,22 @@ module.exports = (sequelize) => {
         unique: true,
       },
       description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
+
       platforms: {
-        type: DataTypes.STRING,
+        type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
       },
       image: {
         type: DataTypes.TEXT,
         defaultValue: "https://images2.alphacoders.com/106/1064201.png",
+        allowNull: true,
       },
-      date: {
+      releasedDate: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       rating: {
         type: DataTypes.FLOAT,
