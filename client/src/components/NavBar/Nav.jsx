@@ -9,6 +9,7 @@ export const Nav = () => {
         <Link to="/home" className={style.linkBtn}>Inicio</Link>
         <Link to="/about" className={style.linkBtn}>Sobre Mi</Link>
         <Link to="/form" className={style.linkBtn}>Crear Video Juego</Link>
+        <Link to="/contact" className={style.linkBtn}>Contact</Link>
         <Link to="/" className={style.linkBtn}>Exit</Link>
       </div>
     </div>

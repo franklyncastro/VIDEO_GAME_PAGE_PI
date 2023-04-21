@@ -6,6 +6,7 @@ import {Routes, Route, useLocation} from "react-router-dom"
 import { Detail } from "./components/Detail/Detail";
 import { Form } from "./components/Form/Form";
 import { About } from "./components/About/About";
+import { Social } from "./components/Social/Social";
 
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route exact path="/detail" element={<Detail/>} />
         <Route exact path="/form" element={<Form/>} />
         <Route exact path="/about" element={<About/>} />
+        <Route exact path="/contact" element={<Social/>} />
       </Routes>
     </div>
   );
