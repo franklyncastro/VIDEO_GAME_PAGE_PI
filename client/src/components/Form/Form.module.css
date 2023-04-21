@@ -1,0 +1,22 @@
+.containerForm{
+    margin-top: 100px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container{
+    display: flex;
+}
+
+
+.containerInputsForm{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    background-color: #474852;
+    align-items: center;
+    margin: 0 auto;
+    gap: 10px;
+    height: 400px;
+    text-align: center;
+    
+}

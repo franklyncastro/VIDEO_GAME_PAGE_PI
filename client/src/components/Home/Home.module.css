@@ -1,13 +1,6 @@
-
-
-.img{
-   
-   width: 100%;
-   height: 876px;
-   position: fixed;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   
-  
-}
+.container {
+   background-image: url("../../img/img-1-play.jpg");
+   background-size: cover;
+   background-position: center;
+   height: 100vh;
+ }

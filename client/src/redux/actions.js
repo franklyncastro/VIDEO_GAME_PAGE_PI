@@ -1,15 +1,15 @@
 import { GET_ALL_GAMES } from "./actions-types";
+const axios = require('axios')
 
-export const getAllVideogames = () => {
-  return async (dispatch) => {
-    try {
-      await fetch("http://localhost:3001/videogames")
-        .then((res) => res.json())
-        .then((payload) => {
-          dispatch({ type: GET_ALL_GAMES, payload });
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const getVideogames = () => async (dispatch) => {
+  try {
+    const response = await axios.get("http://localhost:3001/videogames");
+    dispatch({
+      type: GET_ALL_GAMES,
+      payload: response.data,
+      
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };

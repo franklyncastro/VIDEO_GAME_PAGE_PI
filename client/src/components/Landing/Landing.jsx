@@ -1,15 +1,15 @@
-import React from 'react'
-import img from '../../img/img-2-play.jpg'
-import style from "./Landing.module.css"
-
+import React from "react";
+import style from "./Landing.module.css";
+import { Link } from "react-router-dom";
 
 export const Landing = () => {
   return (
-    <div>
-      <h1>Welcome to World Game</h1>
-      <img src={img} alt="img not found" className={style.imgLanding}/>
+    <div className={style.container}>
+      <Link to="/home" className={style.startButton}>
+        <button className={style.startBtn}>
+          <span className={style.spanStart}> START</span>
+        </button>
+      </Link>
     </div>
-  )
-}
-
-
+  );
+};
