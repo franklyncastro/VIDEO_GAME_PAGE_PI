@@ -1,3 +1,7 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
+
+
 *{
     margin: 0;
     padding: 0;
@@ -18,24 +22,13 @@
     gap: 10px;
     justify-content: flex-end;
 }
-a{
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-family: 'Courier New', Courier, monospace;
-}
 
-a:hover{
-    color: #d2c10e;
-}
+
 
 .linkBtn {
     font-size: 16px;
     color: #e1e1e1;
-    font-family: inherit;
-    font-weight: 800;
+    font-weight: 900;
     cursor: pointer;
     position: relative;
     border: none;
@@ -44,6 +37,9 @@ a:hover{
     transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
     transition-duration: 400ms;
     transition-property: color;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
 
 

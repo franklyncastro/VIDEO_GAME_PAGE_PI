@@ -1,22 +1,96 @@
-.containerForm{
-    margin-top: 100px;
-    font-family: 'Courier New', Courier, monospace;
-}
-
 .container{
     display: flex;
 }
 
-
-.containerInputsForm{
+.containerForm{
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
-    width: 350px;
-    background-color: #474852;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.containerInputs{
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    width: 550px;
     margin: 0 auto;
     gap: 10px;
     height: 400px;
     text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    height: 780px;
+    
     
 }
+
+.inputs {
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #e8e8e8;
+    box-shadow: 2px 2px 4px #ffffff,                -2px -1px 12px #c5c5c5;
+    font-size: medium;
+    font-weight: bold;
+    width: 440px;
+    margin: 0 auto;
+}
+   
+   .inputs:focus {
+    outline-color: white;
+   }
+
+
+   .span{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    width: 200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    background-color: rgba(220, 20, 60, 0.803);
+    border-radius: 5px;
+    align-items: center;
+}
+
+   
+   .formBtn {
+    padding: 1.3em 3em;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #e3e1e1;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(186, 209, 12, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    width: 280px;
+    margin: 0 auto;
+    font-weight: 800;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .formBtn:hover {
+    background-color: crimson;
+    box-shadow: 0px 15px 20px #bfc3c166;
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+  .formBtn:active {
+    transform: translateY(-1px);
+  }
+  

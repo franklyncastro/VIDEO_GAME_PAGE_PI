@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,6 +8,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  background-image: url("../src/img/img-1-play.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  
+  font-family: 'Bruno Ace SC', cursive;
+  
+}
+
+h1{
+  font-family: 'Bruno Ace SC', cursive;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  width: 550px;
+  margin: 0 auto;
 }
 
 code {

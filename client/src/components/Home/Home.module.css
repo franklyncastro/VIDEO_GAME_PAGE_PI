@@ -1,6 +1,5 @@
 .container {
-   background-image: url("../../img/img-1-play.jpg");
-   background-size: cover;
-   background-position: center;
-   height: 100vh;
+   margin-top: 100px;
  }
+
+ 
