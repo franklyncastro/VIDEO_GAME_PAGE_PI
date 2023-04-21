@@ -10,12 +10,19 @@
 
 .container{
     padding: 20px;
-    background-color: rgba(220, 20, 60, 0.905);
-    position: fixed;
+    background-color: #dc143ce7;
+    /* position: fixed; */
     top: 0;
     left: 0;
     width: 100%;
     z-index: 999;
+    transition: all 1s ease-in;
+
+}
+
+.container:hover{
+  background-color: #1d1d1d;
+  transition: all 0.7s ease-in;
 }
 .container_Link{
     display: flex;
@@ -40,20 +47,18 @@
     text-decoration: none;
     cursor: pointer;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  }
-
-
-  
-  .linkBtn:focus,
-  .linkBtn:hover {
-    color: #000;
     transition: all 1s ease ;
-    -webkit-transition: all 1s ease ;
-    -moz-transition: all 1s ease ;
-    -ms-transition: all 1s ease ;
-    -o-transition: all 1s ease ;
 }
+
+
   
+
+  .linkBtn:hover {
+    color: #dc143ce7;
+}
+.linkBtn:focus{
+  color: #0dccee;
+} 
   .linkBtn:focus:after,
   .linkBtn:hover:after {
     width: 100%;

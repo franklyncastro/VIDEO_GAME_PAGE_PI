@@ -5,6 +5,7 @@ import { Nav } from "./components/NavBar/Nav";
 import {Routes, Route, useLocation} from "react-router-dom"
 import { Detail } from "./components/Detail/Detail";
 import { Form } from "./components/Form/Form";
+import { About } from "./components/About/About";
 
 
 
@@ -19,10 +20,11 @@ function App() {
       }
       
       <Routes>
-        <Route exact path="/" element={<Landing/>}/>
+        <Route exact path="/" element={<Landing/>} />
         <Route exact path="/home" element={<Home/>} />
         <Route exact path="/detail" element={<Detail/>} />
         <Route exact path="/form" element={<Form/>} />
+        <Route exact path="/about" element={<About/>} />
       </Routes>
     </div>
   );
