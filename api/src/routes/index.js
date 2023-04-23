@@ -1,20 +1,14 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const express = require("express");
 // Importar todos los routers;
-const genres = require('./genresRoute')
-const videogames = require('./videoGamesRoutes')
-const users = require('./usersRoutes')
-const platforms = require('./platformsRoute')
-const images = require('./imagesRoute')
+const genresRoutes = require("./genres.routes");
+const gamesRoutes = require("./games.routes");
 
 const router = Router();
 router.use(express.json());
 
 // Configurar los routers
-router.use('/genres', genres)
-router.use('/videogames', videogames)
-router.use('/users',users)
-router.use('/platforms', platforms)
-router.use('/images', images)
+router.use("/videogames", gamesRoutes);
+router.use("/genres", genresRoutes);
 
 module.exports = router;

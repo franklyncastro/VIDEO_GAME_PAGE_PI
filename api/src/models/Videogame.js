@@ -30,8 +30,8 @@ module.exports = (sequelize) => {
         defaultValue: "https://images2.alphacoders.com/106/1064201.png",
         allowNull: true,
       },
-      releasedDate: {
-        type: DataTypes.STRING,
+      date: {
+        type: DataTypes.DATEONLY,
         allowNull: true,
       },
       rating: {
