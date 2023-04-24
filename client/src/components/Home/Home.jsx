@@ -20,7 +20,7 @@ export const Home = () => {
   let showLoading = useSelector((state) => state.loading);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const maxGamePage = 18;
+  const maxGamePage = 10;
 
   useEffect(() => {
     dispatch(ShowLoading());
@@ -51,7 +51,6 @@ export const Home = () => {
           />
 
           <Cards allGames={CurrentGames} />
-          
           <Pagination
             maxGamePage={maxGamePage}
             allGames={allGames?.length}

@@ -1,21 +1,22 @@
-main {
+.container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 30px;
   font-family: 'Roboto', sans-serif;
-  margin-left:10%
+  margin-left:10%;
+  cursor: pointer;
 }
 
 .containerCard {
-  width: 12em;
-  height: 18.9em;
+  width: 18em;
+  height: 19em;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  color: rgb(240, 240, 240);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
-  text-shadow: blue 0.1em 0.1em 0.2em;
+  color: #f0f0f0;
+  box-shadow: rgba(0, 0, 0, 0.624) 0px 12px 28px 0px, rgba(220, 5, 5, 0.653) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  text-shadow: #c2100a 0.1em 0.1em 0.2em;
     
 }
 .containerCard img {
@@ -29,7 +30,7 @@ main {
     transition: opacity .2s ease-out;
   }
 
-  .containerCard h2 {
+  .containerCard .nameGame {
     position: absolute;
     inset: auto auto 30px 30px;
     margin: 0;
@@ -39,7 +40,7 @@ main {
     text-transform: uppercase;
   }
  
-  .containerCard span, .containerCard a {
+  .containerCard .nameGenres, .containerCard a {
     position: absolute;
     opacity: 0;
     max-width: 80%;
@@ -47,7 +48,7 @@ main {
     transition: opacity .3s ease-out;
   }
 
-  .containerCard span {
+  .containerCard .nameGenres {
     margin: 5%;
     inset: auto auto 80px 30px;
 
@@ -59,12 +60,12 @@ main {
     text-decoration: none;
   }
   
-  .containerCard:hover h2 {
+  .containerCard:hover .nameGame {
     inset: auto auto 170px 30px;
     transition: inset .3s ease-out;
   }
   
-  .containerCard:hover span, .containerCard:hover a {
+  .containerCard:hover .nameGenres, .containerCard:hover a {
     opacity: 1;
     margin: 5%;
     transition: opacity .5s .1s ease-in;
@@ -74,7 +75,14 @@ main {
     transition: opacity .3s ease-in;
     opacity: 1;
   }
-
+.titleGenres{
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  width: 16rem;
+  justify-content: center;
+  align-items: center;
+}
 
 
 

@@ -9,20 +9,20 @@ const Card = ({ videogame }) => {
   console.log(videogame);
   return (
     <div key={id}>
-      <main>
+      <main className={style.container}>
         <div className={style.containerCard}>
           {isNaN(id) ? (
-            <img src={Url + image} width="100" height="auto" alt="Img from DataBase" />
+            <img src={Url + image} width="150" height="auto" alt="Img from DataBase" />
           ) : (
-            <img src={image} width="100" height="auto" alt="Img from API" />
+            <img src={image} width="150" height="auto" alt="Img from API" />
           )}
           <div>
-            <h2>{name}</h2>
-            <span>
+            <h2 className={style.nameGame}>{name}</h2>
+            <span className={style.nameGenres}>
               {genres.map((data, key) => {
                 return (
-                  <div key={key}>
-                    {data.name} <br></br>
+                  <div key={key} className={style.titleGenres}>
+                    {data.name} 
                   </div>
                 );
               })}
