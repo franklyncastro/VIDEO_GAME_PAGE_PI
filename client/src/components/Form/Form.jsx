@@ -47,7 +47,7 @@ export const Form = () => {
             name="genre"
             className={`${style.inputs} ${style.textarea}`}
           >
-            <option disabled selected>
+            <option disabled selected defaultValue="Select Genre">
               Select Genre
             </option>
             <option> Action</option>
@@ -58,6 +58,7 @@ export const Form = () => {
           <select
             name="platforms"
             className={`${style.inputs} ${style.textarea}`}
+            defaultValue="Select platform"
           >
             <option disabled selected>
               Select platforms

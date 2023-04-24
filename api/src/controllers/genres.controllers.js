@@ -9,6 +9,8 @@ const getApiGenres = async () => {
   return await axios(`https://api.rawg.io/api/genres?key=${API_KEY}`);
 };
 
+
+
 const getAllGenres = async () => {
   console.log("Obtener Generos de la API");
   let dataApi = getApiGenres();

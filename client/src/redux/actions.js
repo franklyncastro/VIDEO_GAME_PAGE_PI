@@ -12,7 +12,10 @@ import {
   RESET_FILTER,
   CLEAN_RTA,
 } from "./actions-types";
-const axios = require("axios");
+
+import axios from 'axios'
+
+
 
 export const GetAllGames = () => {
   return async (dispatch) => {

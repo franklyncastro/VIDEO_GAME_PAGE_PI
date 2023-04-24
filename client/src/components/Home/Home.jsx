@@ -15,13 +15,12 @@ import Pagination from "../Pagination/Pagination";
 import style from "./Home.module.css";
 
 export const Home = () => {
-  
   const dispatch = useDispatch();
   let allGames = useSelector((state) => state.rta);
   let showLoading = useSelector((state) => state.loading);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const maxGamePage = 15;
+  const maxGamePage = 18;
 
   useEffect(() => {
     dispatch(ShowLoading());
@@ -32,7 +31,6 @@ export const Home = () => {
       dispatch(CleanFilterGames());
     };
   }, [dispatch]);
-
 
   const startLasGame = currentPage * maxGamePage;
   const startFirstGame = startLasGame - maxGamePage;
@@ -46,6 +44,12 @@ export const Home = () => {
         <Loading />
       ) : (
         <div>
+          <Pagination
+            maxGamePage={maxGamePage}
+            allGames={allGames?.length}
+            pagination={pagination}
+          />
+
           <Cards allGames={CurrentGames} />
           <Pagination
             maxGamePage={maxGamePage}
@@ -57,5 +61,3 @@ export const Home = () => {
     </div>
   );
 };
-
- 
