@@ -10,7 +10,7 @@ body {
 
   background-image: url("../src/img/img-1-play.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: fixed;
   height: 100vh;
   
   font-family: 'Bruno Ace SC', cursive;

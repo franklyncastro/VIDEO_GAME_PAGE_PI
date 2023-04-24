@@ -22,7 +22,7 @@ const { conn } = require('./src/db.js');
 const {PORT} =process.env
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: true}).then(() => {
   console.log(`Base de datos conectada`)
   server.listen(PORT, () => {
     console.log(`Servidor listo en el puerto ${PORT} `); // eslint-disable-line no-console
