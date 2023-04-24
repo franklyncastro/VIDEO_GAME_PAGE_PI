@@ -3,7 +3,7 @@ require("dotenv").config();
 const { API_KEY } = process.env;
 
 
-
+// Modelos de la DB
 const { Videogame, Genres } = require("../db");
 const { Op } = require("sequelize");
 
@@ -82,7 +82,7 @@ const getGameDB = async () => {
 };
 
 const getAllGames = (db, api) => {
-  console.log(`"Todos los juegos"`);
+  console.log(`"Todos los juegos vgames.controllers.js"`);
   if (db.length > 0 && api.length > 0) {
     console.log("todos");
     return [...db, ...api];

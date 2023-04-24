@@ -22,7 +22,7 @@ const getVideoGamesHandler = async (req, res) => {
 
 const getVideoGamesbyIDHandler = async (req, res) => {
   const { idVideogame } = req.params;
-  // si no se recibe id por params se ejecuta getvideogamehandlers
+  
   try {
     const type = isNaN(idVideogame) ? "db" : "api";
     const results = await getGamesByID(idVideogame, type);

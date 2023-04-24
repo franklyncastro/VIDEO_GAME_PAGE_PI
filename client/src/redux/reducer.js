@@ -43,16 +43,15 @@ const filterGenre = (arr, action) => {
 };
 
 const filter = (state) => {
-  state.rta = state.allGames; // reset
+  state.rta = state.allGames; 
   let filter = [];
-  console.log("reset");
   if (state.filter_type.length > 0) {
-    console.log("filter type");
+    console.log("Filtrar por Tipo");
     if (state.filter_type === "api") {
-      console.log("filter api");
+      console.log("Filtrar desde la API");
       filter = state.rta.filter((data) => !isNaN(data.id));
     } else {
-      console.log("Db filter");
+      console.log("Filtrar desde la DB");
       filter = state.rta.filter((data) => isNaN(data.id));
     }
   }

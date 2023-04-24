@@ -51,6 +51,7 @@ export const Home = () => {
           />
 
           <Cards allGames={CurrentGames} />
+          
           <Pagination
             maxGamePage={maxGamePage}
             allGames={allGames?.length}
