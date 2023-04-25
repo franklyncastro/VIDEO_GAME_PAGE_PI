@@ -50,6 +50,7 @@ const reducer = (state = initialState, action) => {
         detail: action.payload,
       };
 
+
     case LOAD_GENRES:
       return {
         ...state,

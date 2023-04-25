@@ -48,7 +48,6 @@ const SearchBar = () => {
       [e.target.name]: e.target.value,
     });
     dispatch(FilterByType(e.target.value));
-    console.log(e.target.name)
   };
 
   const HandleChangeOrder = (e) => {
@@ -88,8 +87,8 @@ const SearchBar = () => {
           <option value="filter" disabled="disabled">
             Filtrar Tipo
           </option>
-          <option value="API">API</option>
-          <option value="DB">DB</option>
+          <option value="db">API</option>
+          <option value="api">DB</option>
         </select>
 
         <select
@@ -117,7 +116,7 @@ const SearchBar = () => {
           <option value="Descendente">Descendente</option>
         </select>
       </div>
-      <form onSubmit={HandleSubmit}>
+      <form onSubmit={HandleSubmit} className={style.form}>
         <input
           placeholder="Buscar"
           name="name"

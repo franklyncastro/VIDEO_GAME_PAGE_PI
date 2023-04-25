@@ -1,8 +1,94 @@
-.container{
+/* Estilos para el contenedor principal */
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  gap: 10px;
+  margin-bottom: 1rem;
+  margin-top: 10px;
+  flex-wrap: wrap;
 }
 
+/* Estilos para los selects */
+.selects {
+  margin-right: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #666565;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  color: #222020;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Estilos para el botón */
+.btn {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #1c1c1e;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-right: 5px;
+}
+
+.btn:active{
+  color: #951414;
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+
+/* Estilos para el formulario */
+.form {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilos para la barra de búsqueda */
+.search {
+  margin-right: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  color: #444;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 15rem;
+}
+
+.search:focus {
+  outline: none;
+  border: none;
+}
+
+/* Estilos para el contenedor de los selects */
+.containerInputs {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilos para el contenedor de géneros */
+.genres {
+  margin-right: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  color: #444;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 10rem;
+}
+
+/* Estilos para las opciones de géneros */
+.genres option {
+  color: #444;
+  font-size: 1rem;
+  font-weight: bold;
+}

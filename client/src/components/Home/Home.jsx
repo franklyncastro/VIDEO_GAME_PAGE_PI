@@ -18,14 +18,13 @@ import style from "./Home.module.css";
 
 export const Home = () => {
   let location = useLocation();
-let loading = useSelector((state)=> state.loading);
 
   const dispatch = useDispatch();
   let allGames = useSelector((state) => state.rta);
   let showLoading = useSelector((state) => state.loading);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const maxGamePage = 10;
+  const maxGamePage = 6;
 
   useEffect(() => {
     dispatch(ShowLoading());

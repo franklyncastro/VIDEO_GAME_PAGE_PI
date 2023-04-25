@@ -6,15 +6,18 @@ const Card = ({ videogame }) => {
   const Url = useSelector((state) => state.URL);
   console.log(Url);
   const { id, name, genres, image } = videogame;
-  console.log(videogame);
   return (
     <div key={id}>
       <main className={style.container}>
         <div className={style.containerCard}>
           {isNaN(id) ? (
-            <img src={Url + image} width="150" height="auto" alt="Img from DataBase" />
+            <Link to={`/detail/${id}`}>
+              <img src={Url + image} width="150" height="auto" alt="Img from DataBase" />
+            </Link>
           ) : (
-            <img src={image} width="150" height="auto" alt="Img from API" />
+            <Link to={`/detail/${id}`}>
+              <img src={image} width="150" height="auto" alt="Img from API" />
+            </Link>
           )}
           <div>
             <h2 className={style.nameGame}>{name}</h2>
@@ -27,9 +30,9 @@ const Card = ({ videogame }) => {
                 );
               })}
             </span>
-            <Link to={`/detail/${id}`}>
+            {/* <Link to={`/detail/${id}`}>
               <div className={style.button}>Detalle</div>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </main>

@@ -26,7 +26,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Landing/>} />
         <Route exact path="/videogames" element={<Home/>} />
-        <Route exact path="/detail" element={<Detail/>} />
+        <Route exact path="/detail/:id" element={<Detail/>} />
         <Route exact path="/form" element={<Form/>} />
         <Route exact path="/about" element={<About/>} />
         <Route exact path="/contact" element={<Social/>} />
