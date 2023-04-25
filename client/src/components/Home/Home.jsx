@@ -2,6 +2,8 @@ import Cards from "../Cards/Cards";
 
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
+import SearchBar from "../SearchBar/SearchBar";
 import {
   GetAllGames,
   ShowLoading,
@@ -15,6 +17,9 @@ import Pagination from "../Pagination/Pagination";
 import style from "./Home.module.css";
 
 export const Home = () => {
+  let location = useLocation();
+let loading = useSelector((state)=> state.loading);
+
   const dispatch = useDispatch();
   let allGames = useSelector((state) => state.rta);
   let showLoading = useSelector((state) => state.loading);
@@ -44,6 +49,11 @@ export const Home = () => {
         <Loading />
       ) : (
         <div>
+        {
+        location.pathname.includes('videogames') 
+        ? <div>  <SearchBar /> </div> 
+        : <div>  </div>
+        }
           <Pagination
             maxGamePage={maxGamePage}
             allGames={allGames?.length}

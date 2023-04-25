@@ -77,12 +77,13 @@ const SearchBar = () => {
   };
 
   return (
-    <div className={style.EnLinea}>
-      <div className={style.Margin15}>
+    <div className={style.container}>
+      <div className={style.containerInputs}>
         <select
           name="selectType"
           value={Select.selectType}
           onChange={HandleChangeType}
+          className={style.selects}
         >
           <option value="filter" disabled="disabled">
             Filtrar Tipo
@@ -95,6 +96,7 @@ const SearchBar = () => {
           name="selectFilter"
           value={Select.selectFilter}
           onChange={HandleChangeGenre}
+          className={style.selects}
         >
           <option value="filter" disabled="disabled">
             Filtro Genero
@@ -106,6 +108,7 @@ const SearchBar = () => {
           name="selectOrder"
           value={Select.selectOrder}
           onChange={HandleChangeOrder}
+          className={style.selects}
         >
           <option value="filter" disabled="disabled">
             Ordenar
@@ -121,8 +124,9 @@ const SearchBar = () => {
           value={name.name}
           onChange={HandleChangeForm}
           type="text"
+          className={style.search}
         />
-        <button type="submit" className={style.btnSearch}>Buscar</button>
+        <button type="submit" className={style.btn}>Buscar</button>
       </form>
       <button className={style.btn} onClick={HandleClear}>
         Limpiar Filtro
