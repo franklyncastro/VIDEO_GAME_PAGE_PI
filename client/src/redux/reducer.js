@@ -25,61 +25,21 @@ const initialState = {
 };
 
 
-
-const filterGenre = (arr, action) => {
-  let search = arr.map((data) => {
-    let result = data.genres.filter((genre) => genre.name === action);
-
-    let obj = {
-      name: data.name,
-      image: data.image,
-      id: data.id,
-      genres: result,
-    };
-    return obj;
-  });
-
-  return search.filter((clear) => clear.genres?.length > 0);
-};
-
-const filter = (state) => {
-  state.rta = state.allGames; 
-  let filter = [];
-  if (state.filter_type.length > 0) {
-    console.log("Filtrar por Tipo");
-    if (state.filter_type === "api") {
-      console.log("Filtrar desde la API");
-      filter = state.rta.filter((data) => !isNaN(data.id));
-    } else {
-      console.log("Filtrar desde la DB");
-      filter = state.rta.filter((data) => isNaN(data.id));
-    }
-  }
-
-  if (state.filter_genre.length > 0 && filter.length === 0) {
-    filter = filterGenre(state.rta, state.filter_genre);
-  }
-  if (state.filter_genre.length > 0 && filter.length > 0) {
-    filter = filterGenre(filter, state.filter_genre);
-  }
-
-  return filter;
-};
-
-const reducer = (state = initialState, actions) => {
-  switch (actions.type) {
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
     case GET_ALL_GAMES:
       return {
         ...state,
         loading: false,
-        allGames: actions.payload,
-        rta: actions.payload,
+        allGames: action.payload,
+        rta: action.payload,
       };
     case GET_ALLGAMES_NAME:
       return {
         ...state,
-        rta: actions.payload,
+        rta: action.payload,
       };
+      
     case GET_DETAIL_GAMES:
       return {
         ...state,
@@ -87,45 +47,51 @@ const reducer = (state = initialState, actions) => {
         rta: [],
         filter_type: "",
         filter_genre: "",
-        detail: actions.payload,
+        detail: action.payload,
       };
 
     case LOAD_GENRES:
       return {
         ...state,
-        genres: actions.payload,
-        filtered_genres: actions.payload,
+        genres: action.payload,
+        filtered_genres: action.payload,
       };
 
     case FILTER_TYPE: {
-      state.filter_type = actions.payload;
-      let filters = filter(state, actions);
+      const filter_type = action.payload;
+      const filters = filter(state, filter_type, state.filter_genre);
       return {
         ...state,
         rta: filters,
+        filter_type,
       };
     }
 
-    case FILTER_GENRES:
-      state.filter_genre = actions.payload;
-      let filters = filter(state, actions);
+    case FILTER_GENRES: {
+      const filter_genre = action.payload;
+      const filters = filter(state, state.filter_type, filter_genre);
       return {
         ...state,
         rta: filters,
+        filter_genre,
       };
+    }
+
     case ORDER_GAMES: {
       const order = [...state.rta];
 
-      if (actions.payload === "Ascendente") {
-        order.sort((a, b) => a.name.localeCompare(b.name));
-      } else {
-        order.sort((a, b) => b.name.localeCompare(a.name));
+      if (action.payload === "Ascendente") {
+        order.sort((a,b)=> a.id - b.id)
+      } else if(action.payload === "Descendente") {
+        order.sort((a,b)=> b.id - a.id)
       }
+
       return {
         ...state,
         rta: order,
       };
     }
+
 
     case LOADING:
       return {
@@ -148,7 +114,6 @@ const reducer = (state = initialState, actions) => {
         filter_type: "",
         filter_genre: "",
       };
-
     case RESET_FILTER:
       return {
         ...state,
@@ -156,12 +121,30 @@ const reducer = (state = initialState, actions) => {
         filter_genre: "",
         rta: state.allGames,
       };
-
     default:
-      return {
-        ...state,
-      };
+      return state;
   }
 };
 
 export default reducer;
+
+// Helpers
+
+const filterGenre = (arr, genre) => {
+  return arr
+    .map((data) => ({
+      ...data,
+      genres: data.genres.filter((g) => g.name === genre),
+    }))
+    .filter((data) => data.genres.length > 0);
+};
+
+const filter = (state, filter_type, filter_genre) => {
+  let filters = [...state.allGames];
+
+  filters = filter_type === "api" ? filters.filter((data) => !isNaN(data.id)) : filters.filter((data) => isNaN(data.id));
+
+  filters = filter_genre ? filterGenre(filters, filter_genre) : filters;
+
+  return filters;
+};

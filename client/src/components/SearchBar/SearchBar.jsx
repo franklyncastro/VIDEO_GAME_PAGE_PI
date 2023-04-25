@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useDispatch , useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   getAllGames,
@@ -15,7 +15,7 @@ import style from "./SearchBar.module.css";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
-  const [Input, setInput] = useState({ name: "" });
+  const [name, setName] = useState({ name: "" });
   const [Select, setSelect] = useState({
     selectType: "filter",
     selectFilter: "filter",
@@ -26,8 +26,8 @@ const SearchBar = () => {
 
   const HandleSubmit = (e) => {
     e.preventDefault();
-    let value = Input.name;
-    setInput({ name: "" });
+    let value = name.name;
+    setName({ name: "" });
     if (value.length > 0) {
       dispatch(getAllGames(value));
     } else {
@@ -36,8 +36,8 @@ const SearchBar = () => {
   };
 
   const HandleChangeForm = (e) => {
-    setInput({
-      ...Input,
+    setName({
+      ...name,
       [e.target.name]: e.target.value,
     });
   };
@@ -48,6 +48,7 @@ const SearchBar = () => {
       [e.target.name]: e.target.value,
     });
     dispatch(FilterByType(e.target.value));
+    console.log(e.target.name)
   };
 
   const HandleChangeOrder = (e) => {
@@ -96,7 +97,7 @@ const SearchBar = () => {
           onChange={HandleChangeGenre}
         >
           <option value="filter" disabled="disabled">
-            Filtrar Genero
+            Filtro Genero
           </option>
           <Genres allGenres={allGenres} />
         </select>
@@ -109,18 +110,19 @@ const SearchBar = () => {
           <option value="filter" disabled="disabled">
             Ordenar
           </option>
-          <option value="ascendente">Ascendente</option>
-          <option value="descendente">Descendente</option>
+          <option value="Ascendente">Ascendente</option>
+          <option value="Descendente">Descendente</option>
         </select>
       </div>
       <form onSubmit={HandleSubmit}>
         <input
-          placeholder="Busqueda"
+          placeholder="Buscar"
           name="name"
-          value={Input.name}
+          value={name.name}
           onChange={HandleChangeForm}
           type="text"
         />
+        <button type="submit" className={style.btnSearch}>Buscar</button>
       </form>
       <button className={style.btn} onClick={HandleClear}>
         Limpiar Filtro

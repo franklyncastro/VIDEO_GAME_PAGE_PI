@@ -1,20 +1,15 @@
 import React from "react";
 
-const Genres = (AllGenres) => {
-  const { allGenres } = AllGenres;
-
+const Genres = ({ allGenres }) => {
   return (
     <>
       {allGenres?.map((option, key) => (
-        <select defaultValue="select">
-        <option key={key} value={option.name}>
-          {option.name}
+        <option key={key} value={option.Nombre}>
+          {option.Nombre}
         </option>
-        </select>
       ))}
     </>
   );
 };
 
-
-export default Genres
+export default Genres;
