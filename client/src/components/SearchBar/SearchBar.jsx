@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   getAllGames,
   ResetFilterGames,
@@ -10,7 +8,6 @@ import {
   FilterByGenres,
 } from "../../redux/actions";
 import Genres from "../Genres/Genre";
-
 import style from "./SearchBar.module.css";
 
 const SearchBar = () => {
@@ -21,18 +18,19 @@ const SearchBar = () => {
     selectFilter: "filter",
     selectOrder: "filter",
   });
-
-  let allGenres = useSelector((state) => state.genres);
+  const allGenres = useSelector((state) => state.genres);
+  console.log(allGenres)
 
   const HandleSubmit = (e) => {
     e.preventDefault();
-    let value = name.name;
-    setName({ name: "" });
+    const value = name.name;
     if (value.length > 0) {
       dispatch(getAllGames(value));
     } else {
       dispatch(ResetFilterGames());
     }
+    setName({ name: "" });
+    setName((prevName) => ({ ...prevName, name: "" }));
   };
 
   const HandleChangeForm = (e) => {
@@ -125,7 +123,9 @@ const SearchBar = () => {
           type="text"
           className={style.search}
         />
-        <button type="submit" className={style.btn}>Buscar</button>
+        <button type="submit" className={style.btn}>
+          Buscar
+        </button>
       </form>
       <button className={style.btn} onClick={HandleClear}>
         Limpiar Filtro

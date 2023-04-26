@@ -10,4 +10,5 @@ const {
 genreRoutes.get("/", getGenresHandler);
 genreRoutes.get("/load/", getGenresLoadHandler);
 
+
 module.exports = genreRoutes;

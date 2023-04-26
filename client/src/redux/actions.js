@@ -76,6 +76,7 @@ export const FilterByGenres = (value) => {
     });
   };
 }; 
+
 export const OrderGames = (value) => {
   return (dispatch) => {
     return dispatch({

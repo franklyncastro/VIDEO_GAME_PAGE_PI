@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const Card = ({ videogame }) => {
   const Url = useSelector((state) => state.URL);
-  console.log(Url);
   const { id, name, genres, image } = videogame;
   return (
     <div key={id}>
@@ -30,9 +29,6 @@ const Card = ({ videogame }) => {
                 );
               })}
             </span>
-            {/* <Link to={`/detail/${id}`}>
-              <div className={style.button}>Detalle</div>
-            </Link> */}
           </div>
         </div>
       </main>

@@ -1,11 +1,11 @@
 import React from "react";
 
 const Genres = ({ allGenres }) => {
-  return (
+   return (
     <>
       {allGenres?.map((option, key) => (
-        <option key={key} value={option.Nombre}>
-          {option.Nombre}
+        <option key={key} value={option.name}>
+          {option.name}
         </option>
       ))}
     </>
