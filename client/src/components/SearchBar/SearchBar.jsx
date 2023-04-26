@@ -13,13 +13,15 @@ import style from "./SearchBar.module.css";
 const SearchBar = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState({ name: "" });
-  const [Select, setSelect] = useState({
+  const [select, setSelect] = useState({
     selectType: "filter",
     selectFilter: "filter",
     selectOrder: "filter",
   });
+
   const allGenres = useSelector((state) => state.genres);
-  console.log(allGenres)
+
+  
 
   const HandleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +44,7 @@ const SearchBar = () => {
 
   const HandleChangeType = (e) => {
     setSelect({
-      ...Select,
+      ...select,
       [e.target.name]: e.target.value,
     });
     dispatch(FilterByType(e.target.value));
@@ -50,7 +52,7 @@ const SearchBar = () => {
 
   const HandleChangeOrder = (e) => {
     setSelect({
-      ...Select,
+      ...select,
       [e.target.name]: e.target.value,
     });
     dispatch(OrderGames(e.target.value));
@@ -58,10 +60,11 @@ const SearchBar = () => {
 
   const HandleChangeGenre = (e) => {
     setSelect({
-      ...Select,
+      ...select,
       [e.target.name]: e.target.value,
     });
     dispatch(FilterByGenres(e.target.value));
+    console.log(`FilterByGenres ${FilterByGenres}`)
   };
 
   const HandleClear = () => {
@@ -78,32 +81,32 @@ const SearchBar = () => {
       <div className={style.containerInputs}>
         <select
           name="selectType"
-          value={Select.selectType}
+          value={select.selectType}
           onChange={HandleChangeType}
           className={style.selects}
         >
           <option value="filter" disabled="disabled">
             Filtrar Tipo
           </option>
-          <option value="db">API</option>
-          <option value="api">DB</option>
+          <option value="api">API</option>
+          <option value="db">DB</option>
         </select>
 
         <select
           name="selectFilter"
-          value={Select.selectFilter}
+          value={select.selectFilter}
           onChange={HandleChangeGenre}
           className={style.selects}
         >
           <option value="filter" disabled="disabled">
-            Filtro Genero
+            Filtrar Genero
           </option>
-          <Genres allGenres={allGenres} />
+          <Genres  allGenres={allGenres}/>
         </select>
 
         <select
           name="selectOrder"
-          value={Select.selectOrder}
+          value={select.selectOrder}
           onChange={HandleChangeOrder}
           className={style.selects}
         >

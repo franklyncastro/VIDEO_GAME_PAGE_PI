@@ -176,8 +176,7 @@ const getGameNameByDB = async (name) => {
 };
 
 const getGameByName = async (name) => {
-  
-  console.log("Nombre WEB");
+
   let PromApi = getGameByNameAPI(name);
   return PromApi.then((search) => {
     if (search.data.results.length >= 16) {
@@ -241,18 +240,21 @@ const getGameByNameAPI = async (name) => {
   );
 };
 
-const createVideoGame = async (
+const createVideoGame = async ({
   name,
   description,
   platforms,
   image,
   date,
   rating,
-  searchByGenre
-) => {
+  searchByGenre,
+}) => {
+  if (!name || !searchByGenre || !Array.isArray(searchByGenre)) {
+    return { error: "Faltan datos necesarios o no son correctos" };
+  }
   
   const [video, created] = await Videogame.findOrCreate({
-    where: { name: name },
+    where: { name },
     defaults: {
       name,
       description,
@@ -262,19 +264,21 @@ const createVideoGame = async (
       rating,
     },
   });
-  if (!created)
+
+  if (!created) {
     return {
-      error: `El Juego ${name} no puede ser creado por que ya esxiste en la Base de Datos`,
+      error: `El Juego ${name} no puede ser creado porque ya existe en la Base de Datos`,
     };
-  let i = 0;
-  
-  while (searchByGenre.length > i) {
-    let Genre = await searchGenres(searchByGenre[i]);
-    await Genre.addVideogame(video); 
-    i++;
   }
-  return { ok: `Juego creado con exito!` };
+  
+  const genrePromises = searchByGenre.map((genre) => searchGenres(genre));
+  const genres = await Promise.all(genrePromises);
+
+  await Promise.all(genres.map((genre) => genre.addVideogame(video)));
+
+  return { ok: `Juego creado con éxito!` };
 };
+
 
 module.exports = {
   getApiGames,

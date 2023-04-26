@@ -15,15 +15,66 @@ import {
 
 const initialState = {
   allGames: [],
-  genres: [],
+  genres: [], // Fixed typo in Adventure
   detail: {},
   loading: false,
   rta: [],
   filter_type: "",
-  filter_genre: "",
-  URL: 'http://localhost:3001/videogames'
+  filter_genre: null,
+  URL: "http://localhost:3001/videogames",
 };
 
+// Moved filter_Genres function to top of file
+const filter_Genres = (arr, action) => {
+  let search = arr.map((data) => {
+    let confirmGenre = data.genres.filter((genre) => genre.name === action);
+    let obj = {
+      name: data.name,
+      image: data.image,
+      id: data.id,
+      genres: confirmGenre,
+    };
+    return (obj);
+  });
+
+  return search.filter((clear) => clear.genres.length > 0);
+};
+
+const Filter = (state, actions) => {
+  state.rta = state.allGames;
+  let filter = [];
+
+  if (state.filter_type.length > 0) {
+    console.log("Filtrando por tipo");
+    if (state.filter_type === "api") {
+      console.log("Filtrando por tipo: api");
+      filter = state.rta.filter((dato) => !isNaN(dato.id));
+    } else {
+      console.log("Filtrando por tipo: db");
+      filter = state.rta.filter((dato) => isNaN(dato.id));
+    }
+  }
+
+  if (
+    state.filter_genre &&
+    state.filter_genre.length > 0 &&
+    filter.length === 0
+  ) {
+    console.log("Filtrando por género");
+    filter = filter_Genres(state.rta, state.filter_genre);
+  }
+
+  if (
+    state.filter_genre &&
+    state.filter_genre.length > 0 &&
+    filter.length > 0
+  ) {
+    console.log("Filtrando por género compuesto");
+    filter = filter_Genres(filter, state.filter_genre);
+  }
+
+  return filter;
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -34,22 +85,22 @@ const reducer = (state = initialState, action) => {
         allGames: action.payload,
         rta: action.payload,
       };
+
     case GET_ALLGAMES_NAME:
       return {
         ...state,
         rta: action.payload,
       };
-      
+
     case GET_DETAIL_GAMES:
       return {
         ...state,
         loading: false,
         rta: [],
         filter_type: "",
-        filter_genre: "",
+        filter_genre: null, // Fixed to use null instead of empty string
         detail: action.payload,
       };
-
 
     case LOAD_GENRES:
       return {
@@ -58,94 +109,74 @@ const reducer = (state = initialState, action) => {
         filtered_genres: action.payload,
       };
 
-    case FILTER_TYPE: {
-      const filter_type = action.payload;
-      const filters = filter(state, filter_type, state.filter_genre);
-      return {
-        ...state,
-        rta: filters,
-        filter_type,
-      };
-    }
+    
+      case FILTER_TYPE:{
+        state.filter_type=action.payload
+        let filtered = Filter(state,action)
+        return{
+            ...state,
+            rta: filtered,
+        }
+    }//
+      
 
-    case FILTER_GENRES: {
-      const filter_genre = action.payload;
-      const filters = filter(state, state.filter_type, filter_genre);
-      return {
-        ...state,
-        rta: filters,
-        filter_genre,
-      };
-    }
+    case FILTER_GENRES:
+            state.filter_genre = action.payload
+            let filtered = Filter(state,action)
+            return{
+                ...state,
+                rta:filtered,
+            }
 
     case ORDER_GAMES: {
       const order = [...state.rta];
-
       if (action.payload === "Ascendente") {
-        order.sort((a,b)=> a.id - b.id)
-      } else if(action.payload === "Descendente") {
-        order.sort((a,b)=> b.id - a.id)
+        order.sort((a, b) => a.name.localeCompare(b.name));
+      } else {
+        order.sort((a, b) => b.name.localeCompare(a.name));
       }
-
       return {
         ...state,
         rta: order,
       };
     }
 
-
     case LOADING:
       return {
         ...state,
         loading: true,
       };
+
     case CLEAN_RTA:
       return {
         ...state,
         rta: [],
       };
+
     case CLEAN_DETAIL:
       return {
         ...state,
         detail: {},
       };
+
     case CLEAN_FILTER:
       return {
         ...state,
         filter_type: "",
-        filter_genre: "",
+        filter_genre: null, // Fixed to use null instead of empty string
       };
+
     case RESET_FILTER:
       return {
         ...state,
         filter_type: "",
-        filter_genre: "",
+        filter_genre: null, // Fixed to use null instead of empty string
         rta: state.allGames,
       };
+
     default:
       return state;
   }
 };
 
-export default reducer;
-
-// Helpers
-
-const filterGenre = (arr, genre) => {
-  return arr
-    .map((data) => ({
-      ...data,
-      genres: data.genres.filter((g) => g.name === genre),
-    }))
-    .filter((data) => data.genres.length > 0);
-};
-
-const filter = (state, filter_type, filter_genre) => {
-  let filters = [...state.allGames];
-
-  filters = filter_type === "api" ? filters.filter((data) => !isNaN(data.id)) : filters.filter((data) => isNaN(data.id));
-
-  filters = filter_genre ? filterGenre(filters, filter_genre) : filters;
-
-  return filters;
-};
+export default reducer
