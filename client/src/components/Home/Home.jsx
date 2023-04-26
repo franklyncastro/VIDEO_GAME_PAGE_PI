@@ -24,7 +24,7 @@ export const Home = () => {
   let showLoading = useSelector((state) => state.loading);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const maxGamePage = 6;
+  const maxGamePage = 8;
 
   useEffect(() => {
     dispatch(ShowLoading());

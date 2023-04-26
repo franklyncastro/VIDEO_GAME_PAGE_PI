@@ -1,11 +1,13 @@
 /* Estilos para el contenedor principal */
 .container {
   display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 1rem;
   margin-top: 10px;
   flex-wrap: wrap;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  justify-content: center;
 }
 
 /* Estilos para los selects */

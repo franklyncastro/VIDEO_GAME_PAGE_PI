@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -35,9 +35,10 @@ const Detail = () => {
       {showLoading ? (
         <Loading />
       ) : (
-        <div className={style.gameContainer}>
-          <ul className={style.cardsList}>
-            <li className={style.cardItem}>
+        <main className={style.gameContainer}>
+          <h1 className={style.cardTitle}>{gameDetail.name}</h1>
+          <div className={style.cardsList}>
+            <div className={style.cardItem}>
               <div className={style.card}>
                 <div className={style.cardImage}>
                   <img
@@ -50,8 +51,7 @@ const Detail = () => {
                   />
                 </div>
                 <div className={style.cardContent}>
-                  <h1 className={style.cardTitle}>{gameDetail.name}</h1>
-
+                  
                   <div className={style.cardDescription}>
                     <h2 className={style.cardSubtitle}>
                       {isNaN(gameDetail.id)
@@ -79,7 +79,7 @@ const Detail = () => {
                     </div>
                     <div className={style.genres}>
                       <span className={style.span}>
-                        {gameDetail.genres?.map((value) => {
+                        Genres: {gameDetail.genres?.map((value) => {
                           return `${value.name} | `;
                         })}
                       </span>
@@ -87,9 +87,10 @@ const Detail = () => {
                   </div>
                 </div>
               </div>
-            </li>
-          </ul>
-        </div>
+            <Link to='/videogames' className={style.btn}>Volver</Link>
+            </div>
+          </div>
+        </main>
       )}
     </>
   );

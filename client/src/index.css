@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
+
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,100;1,400;1,500;1,900&display=swap');
+
 
 body {
   margin: 0;
@@ -13,12 +15,12 @@ body {
   background-position: fixed;
   height: 100vh;
   
-  font-family: 'Bruno Ace SC', cursive;
+  font-family: 'Roboto', sans-serif;
   
 }
 
 h1{
-  font-family: 'Bruno Ace SC', cursive;
+  font-family: 'Roboto', sans-serif;
   color: #fff;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
   width: 550px;
