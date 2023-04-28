@@ -7,13 +7,7 @@ const { Genres } = require("../db");
 
 
 const getApiGenres = async () => {
-  try {
-    const response = await axios(`https://api.rawg.io/api/genres?key=${API_KEY}`);
-    return response.data;
-  } catch (error) {
-    console.error(`Error al obtener los géneros de la API: ${error.message}`);
-    return [];
-  }
+  return await axios(`https://api.rawg.io/api/genres?key=${API_KEY}`)
 };
 
 
