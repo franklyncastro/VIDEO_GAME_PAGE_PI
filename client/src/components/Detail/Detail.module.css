@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 85vh;
   flex-direction: column;
   margin-top: 20px;
   flex-wrap: wrap;
@@ -60,7 +60,7 @@
 }
 
 .cardDescription {
-  font-size: 0.9rem;
+  font-size: 1rem;
   width: 451px;
   height: 220px;
   object-fit: cover;

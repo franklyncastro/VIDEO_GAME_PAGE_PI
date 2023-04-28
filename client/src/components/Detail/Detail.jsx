@@ -19,6 +19,7 @@ const Detail = () => {
   let showLoading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
   let gameDetail = useSelector((state) => state.detail);
+  console.log(gameDetail);
 
   useEffect(() => {
     dispatch(ShowLoading());
@@ -51,7 +52,6 @@ const Detail = () => {
                   />
                 </div>
                 <div className={style.cardContent}>
-                  
                   <div className={style.cardDescription}>
                     <h2 className={style.cardSubtitle}>
                       {isNaN(gameDetail.id)
@@ -67,27 +67,42 @@ const Detail = () => {
                         .replace(/<br\/>/g, "")}
                     </span>
                     <span> Date: {gameDetail.date} </span>
+                        
                     <div className={style.rating}>
                       Rating:
                       <span>
                         {isNaN(gameDetail.id)
                           ? gameDetail.rating
-                          : gameDetail.rating?.map((value) => {
-                              return `${value.title} | `;
-                            })}
+                          : (() => {
+                              let totalScore = 0;
+                              let totalCount = 0;
+                              gameDetail.rating.forEach((value) => {
+                                totalScore += value.count * value.id;
+                                totalCount += value.count;
+                              });
+                              const average = totalScore / totalCount;
+                              const ratingStars = "⭐️".repeat(
+                                Math.round(average)
+                              );
+                              return `${ratingStars}`;
+                            })()}
                       </span>
                     </div>
+
                     <div className={style.genres}>
                       <span className={style.span}>
-                        Genres: {gameDetail.genres?.map((value) => {
-                          return `${value.name} | `;
+                        Genres:
+                        {gameDetail.genres?.map((value) => {
+                          return ` ${value.name} | `;
                         })}
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
-            <Link to='/videogames' className={style.btn}>Volver</Link>
+              <Link to="/videogames" className={style.btn}>
+                Volver
+              </Link>
             </div>
           </div>
         </main>

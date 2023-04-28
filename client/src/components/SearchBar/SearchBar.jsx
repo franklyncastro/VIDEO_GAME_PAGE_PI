@@ -29,11 +29,13 @@ const SearchBar = () => {
     if (value.length > 0) {
       dispatch(getAllGames(value));
     } else {
-      dispatch(ResetFilterGames());
+      alert("Ingresa un valor en el campo de búsqueda");
     }
     setName({ name: "" });
     setName((prevName) => ({ ...prevName, name: "" }));
   };
+  
+  
 
   const HandleChangeForm = (e) => {
     setName({

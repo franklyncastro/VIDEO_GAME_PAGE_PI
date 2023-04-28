@@ -63,10 +63,7 @@ export const Form = () => {
             <option disabled selected>
               Select platforms
             </option>
-            <option> PS4 </option>
-            <option> PS5 2</option>
-            <option> Xbox One 3</option>
-            <option> PC</option>
+            
           </select>
           <button className={style.formBtn}>SEND</button>
         </div>
