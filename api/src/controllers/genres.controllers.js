@@ -11,8 +11,6 @@ const getApiGenres = async () => {
 };
 
 
-
-
 const getAllGenres = async () => {
   console.log("Obtener Generos de la API");
   let dataApi = getApiGenres();
