@@ -113,8 +113,8 @@ const SearchBar = () => {
           <option value="filter" disabled="disabled">
             Ordenar
           </option>
-          <option value="Ascendente">Ascendente</option>
-          <option value="Descendente">Descendente</option>
+          <option value="Ascendente">A-Z</option>
+          <option value="Descendente">Z-A</option>
         </select>
       </div>
       <form onSubmit={HandleSubmit} className={style.form}>

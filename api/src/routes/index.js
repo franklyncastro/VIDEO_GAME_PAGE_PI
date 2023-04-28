@@ -9,6 +9,6 @@ router.use(express.json());
 
 // Configurar los routers
 router.use("/videogames", gamesRoutes);
-router.use("/genres", genresRoutes);
+router.use("/genres/", genresRoutes);
 
 module.exports = router;
