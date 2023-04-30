@@ -2,12 +2,12 @@ const axios = require("axios");
 require("dotenv").config();
 const { API_KEY } = process.env;
 
-
 // Modelos de la DB
 const { Videogame, Genres } = require("../db");
 const { Op } = require("sequelize");
 
-const { searchGenres } = require("./genres.controllers");
+const { GenreSeach } = require("./genres.controllers");
+
 
 const gameObject = (
   id,
@@ -32,24 +32,20 @@ const gameObject = (
 };
 
 const getApiGames = async () => {
-
-   let i = 1;
+  let i = 1;
   let ARR_Promis = [];
   let ARR_res = [];
   let ARR_datos = [];
   while (i < 6) {
     let PromApi = await axios(
       `https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`
-      );
-      
+    );
+
     ARR_Promis.push(PromApi);
     i++;
   }
 
-  
-  
   ARR_res = (await Promise.all(ARR_Promis)).map((PromIndi) => {
-   
     return PromIndi.data.results.map((data) => {
       return {
         id: data.id,
@@ -58,22 +54,20 @@ const getApiGames = async () => {
         genres: data.genres,
       };
     });
-    
   });
-  
+
   ARR_res.map((data) => {
     ARR_datos = ARR_datos.concat(data);
   });
- 
+
   return ARR_datos;
 };
 
 const getGameDB = async () => {
-  
   const getGameDB = await Videogame.findAll({
     include: {
       model: Genres,
-      attributes: [["name", "name"]], 
+      attributes: [["name", "name"]],
       through: { attributes: [] },
     },
     attributes: ["id", "name", ["image", "image"]],
@@ -99,9 +93,7 @@ const getGamesByApi = async (id) => {
 };
 
 const getGamesByID = async (id, type) => {
-
   if (type === "api") {
-   
     let PromApi = getGamesByApi(id);
     return PromApi.then((game) => {
       return (obj = gameObject(
@@ -114,7 +106,6 @@ const getGamesByID = async (id, type) => {
         game.data.ratings,
         game.data.genres
       ));
-
     });
   } else {
     let videoGameDB = await Videogame.findByPk(id, {
@@ -127,7 +118,7 @@ const getGamesByID = async (id, type) => {
     });
 
     if (!videoGameDB) return { error: `No hay resultados con el ID: ${id}` };
-      return gameObject(
+    return gameObject(
       videoGameDB.id,
       videoGameDB.name,
       videoGameDB.description,
@@ -141,13 +132,12 @@ const getGamesByID = async (id, type) => {
 };
 
 const getGameNameByDB = async (name) => {
- 
   console.log(name);
 
   const searchGameDB = await Videogame.findAll({
     where: {
       name: {
-        [Op.iLike]: `%${name}%`, 
+        [Op.iLike]: `%${name}%`,
       },
     },
     include: {
@@ -163,7 +153,6 @@ const getGameNameByDB = async (name) => {
       "date",
       "rating",
     ],
-    
   });
   if (searchGameDB.length >= 16) {
     return searchGameDB.slice(0, 15);
@@ -176,7 +165,6 @@ const getGameNameByDB = async (name) => {
 };
 
 const getGameByName = async (name) => {
-
   let PromApi = getGameByNameAPI(name);
   return PromApi.then((search) => {
     if (search.data.results.length >= 16) {
@@ -190,9 +178,7 @@ const getGameByName = async (name) => {
   });
 };
 
-
 const getAllGameByName = (api, db) => {
-  
   if (db.length > 0 && api.length > 0) {
     let st = api.map((data) => {
       return gameObject(
@@ -240,20 +226,17 @@ const getGameByNameAPI = async (name) => {
   );
 };
 
-const createVideoGame = async ({
+const createVideoGameDataBase = async (
   name,
   description,
   platforms,
   image,
   date,
   rating,
-  searchByGenre,
-}) => {
-  if (!name || !searchByGenre || !Array.isArray(searchByGenre)) {
-    return { error: "Faltan datos necesarios o no son correctos" };
-  }
+  searchGenres
+) => {
   
-  const [video, created] = await Videogame.findOrCreate({
+  const [videoGame, created] = await Videogame.findOrCreate({
     where: { name },
     defaults: {
       name,
@@ -264,21 +247,19 @@ const createVideoGame = async ({
       rating,
     },
   });
-
-  if (!created) {
+  if (!created)
     return {
-      error: `El Juego ${name} no puede ser creado porque ya existe en la Base de Datos`,
+      error: "No se puede crear, dado que ya existe el nombre: " + Nombre,
     };
+  let i = 0;
+  // obtengo el array con los generos y creo las relaciones
+  while (searchGenres.length > i) {
+    const Genre = await GenreSeach(searchGenres[i]);
+    await Genre.addVideogame(videoGame);
+    i++;
   }
-  
-  const genrePromises = searchByGenre.map((genre) => searchGenres(genre));
-  const genres = await Promise.all(genrePromises);
-
-  await Promise.all(genres.map((genre) => genre.addVideogame(video)));
-
-  return { ok: `Juego creado con éxito!` };
+  return { ok: "Se creo correctamente" };
 };
-
 
 module.exports = {
   getApiGames,
@@ -288,5 +269,5 @@ module.exports = {
   getGameByName,
   getGameNameByDB,
   getAllGameByName,
-  createVideoGame,
+  createVideoGameDataBase,
 };

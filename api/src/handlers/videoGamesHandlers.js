@@ -4,7 +4,7 @@ const {
   getAllGames,
   getGamesByID,
   getGameByName,
-  createVideoGame,
+  createVideoGameDataBase,
   getGameNameByDB,
   getAllGameByName,
 } = require("../controllers/vgames.controllers");
@@ -22,7 +22,7 @@ const getVideoGamesHandler = async (req, res) => {
 
 const getVideoGamesbyIDHandler = async (req, res) => {
   const { idVideogame } = req.params;
-  
+
   try {
     const type = isNaN(idVideogame) ? "db" : "api";
     const results = await getGamesByID(idVideogame, type);
@@ -34,14 +34,13 @@ const getVideoGamesbyIDHandler = async (req, res) => {
 
 const getVideoGamesbyNameHandler = async (req, res) => {
   const { name } = req.query;
-  console.log(`Nombre del juego que se esta buscando ${name}`)
+  console.log(`Nombre del juego que se esta buscando ${name}`);
 
   try {
     if (!name) res.status(200).send("El Campo nombre no puede estar vacio");
     const api = await getGameByName(name);
     const db = await getGameNameByDB(name);
     const results = getAllGameByName(api, db);
-   
 
     if (results.error) {
       res.status(200).send(results.error);
@@ -55,43 +54,35 @@ const getVideoGamesbyNameHandler = async (req, res) => {
 
 const CreateVideoGameHandler = async (req, res) => {
   try {
-    const {
-      name,
-      description,
-      platforms,
-      image,
-      date,
-      rating,
-      SearchGenre,
-    } = req.body;
+    const { name, description, platforms, date, rating, searchGenres } =
+      req.body;
     //
-    const searchG = SearchGenre.split(",");
+    const searchGenre = searchGenres.split(","); 
 
-    console.log(req.file);
-    let results = await createVideoGame(
+    //  console.log(`Imagen = ${req.file.filename}`);
+    const response = await createVideoGameDataBase(
       name,
       description,
       platforms,
+      req.file.filename,
       date,
       rating,
-      req.file.filename,
-      searchG
+      searchGenre
     );
-    res.status(200).json(results);
-  } catch (error) {
-    if (error.name === "SequelizeValidationError") {
-      // console.log(JSON.stringify(error))
-      let ARR_Error = [];
-      error.errors.forEach((element) => {
-        let Obj = {
+    res.status(200).json(response);
+  } catch (err) {
+    if (err.name === "SequelizeValidationerr") {
+      const arrayErrors = [];
+      err.errors.forEach((element) => {
+        const Obj = {
           [element.path]: element.message,
         };
-        ARR_Error.push(Obj);
+        arrayErrors.push(Obj);
       });
-      res.status(200).json(ARR_Error);
+      res.status(200).json(arrayErrors);
     } else {
-      console.log(error);
-      res.status(400).send(error.message);
+      console.log(err);
+      res.status(400).send(err.message);
     }
   }
 };

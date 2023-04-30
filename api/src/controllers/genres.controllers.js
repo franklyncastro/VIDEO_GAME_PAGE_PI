@@ -30,7 +30,7 @@ const getGenres = async () => {
   return allGenres;
 };
 
-const searchGenres = async (genre) => {
+const GenreSeach = async (genre) => {
   return await Genres.findOne({ where: { name: genre } });
 };
 
@@ -44,6 +44,6 @@ const loadGenres = async () => {
 
 module.exports = {
   getGenres,
-  searchGenres,
+  GenreSeach,
   loadGenres,
 };
