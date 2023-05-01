@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import style from "./Card.module.css";
-import { useSelector } from "react-redux";
 
 const Card = ({ videogame }) => {
-  const Url = useSelector((state) => state.URL);
   const { id, name, genres, image } = videogame;
   return (
     <div key={id}>
@@ -11,7 +9,7 @@ const Card = ({ videogame }) => {
         <div className={style.containerCard}>
           {isNaN(id) ? (
             <Link to={`/detail/${id}`}>
-              <img src={Url + image} width="150" height="auto" alt="Img from DataBase" />
+              <img src={image} width="150" height="auto" alt="Img from DataBase" />
             </Link>
           ) : (
             <Link to={`/detail/${id}`}>

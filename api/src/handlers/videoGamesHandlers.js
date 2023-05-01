@@ -22,7 +22,7 @@ const getVideoGamesHandler = async (req, res) => {
 
 const getVideoGamesbyIDHandler = async (req, res) => {
   const { idVideogame } = req.params;
-
+  
   try {
     const type = isNaN(idVideogame) ? "db" : "api";
     const results = await getGamesByID(idVideogame, type);
@@ -34,13 +34,14 @@ const getVideoGamesbyIDHandler = async (req, res) => {
 
 const getVideoGamesbyNameHandler = async (req, res) => {
   const { name } = req.query;
-  console.log(`Nombre del juego que se esta buscando ${name}`);
+  console.log(`Nombre del juego que se esta buscando ${name}`)
 
   try {
     if (!name) res.status(200).send("El Campo nombre no puede estar vacio");
     const api = await getGameByName(name);
     const db = await getGameNameByDB(name);
     const results = getAllGameByName(api, db);
+   
 
     if (results.error) {
       res.status(200).send(results.error);
@@ -54,17 +55,23 @@ const getVideoGamesbyNameHandler = async (req, res) => {
 
 const CreateVideoGameHandler = async (req, res) => {
   try {
-    const { name, description, platforms, date, rating, searchGenres } =
-      req.body;
-    //
-    const searchGenre = searchGenres.split(","); 
+    const {
+      name,
+      description,
+      platforms,
+      date,
+      rating,
+      searchGenres,
+      image, // Agregamos la URL de la imagen al objeto de datos
+    } = req.body;
 
-    //  console.log(`Imagen = ${req.file.filename}`);
+    const searchGenre = searchGenres.split(",");
+
     const response = await createVideoGameDataBase(
       name,
       description,
       platforms,
-      req.file.filename,
+      image, // Pasamos la URL de la imagen como argumento adicional
       date,
       rating,
       searchGenre

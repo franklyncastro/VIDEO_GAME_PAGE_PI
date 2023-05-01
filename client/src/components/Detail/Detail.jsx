@@ -15,11 +15,9 @@ import style from "./Detail.module.css";
 
 const Detail = () => {
   const { id } = useParams();
-  const URL = useSelector((state) => state.URL);
   let showLoading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
   let gameDetail = useSelector((state) => state.detail);
-  console.log(gameDetail);
 
   useEffect(() => {
     dispatch(ShowLoading());
@@ -42,10 +40,11 @@ const Detail = () => {
             <div className={style.cardItem}>
               <div className={style.card}>
                 <div className={style.cardImage}>
+                  {/* Imagen */}
                   <img
                     src={
                       isNaN(gameDetail.id)
-                        ? URL + gameDetail.image
+                        ? gameDetail.image
                         : gameDetail.image
                     }
                     alt={gameDetail.name}
@@ -54,20 +53,14 @@ const Detail = () => {
                 <div className={style.cardContent}>
                   <div className={style.cardDescription}>
                     <h2 className={style.cardSubtitle}>
+                      {/* Plataforma */}
                       {isNaN(gameDetail.id)
                         ? gameDetail.platforms
                         : gameDetail.platforms?.map((value) => {
                             return `${value.platform.name} | `;
                           })}
                     </h2>
-                    <span>
-                      {gameDetail.description
-                        ?.replace(/<p>/g, "")
-                        .replace(/<\/p>/g, "")
-                        .replace(/<br\/>/g, "")}
-                    </span>
-                    <span> Date: {gameDetail.date} </span>
-                        
+                    {/* Rating mostrado con estrellas */}
                     <div className={style.rating}>
                       Rating:
                       <span>
@@ -88,8 +81,8 @@ const Detail = () => {
                             })()}
                       </span>
                     </div>
-
                     <div className={style.genres}>
+                      {/* Generos */}
                       <span className={style.span}>
                         Genres:
                         {gameDetail.genres?.map((value) => {
@@ -97,6 +90,15 @@ const Detail = () => {
                         })}
                       </span>
                     </div>
+                    {/* Description o Summary */}
+                    <span className={style.span}>Description: </span>
+                    <span>
+                      {gameDetail.description
+                        ?.replace(/<p>/g, "")
+                        .replace(/<\/p>/g, "")
+                        .replace(/<br\/>/g, "")}
+                    </span>
+                    <span> Date: {gameDetail.date} </span>
                   </div>
                 </div>
               </div>

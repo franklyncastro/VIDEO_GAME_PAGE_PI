@@ -230,26 +230,25 @@ const createVideoGameDataBase = async (
   name,
   description,
   platforms,
-  image,
+  image, // Agregamos el argumento "image"
   date,
   rating,
   searchGenres
 ) => {
-  
   const [videoGame, created] = await Videogame.findOrCreate({
     where: { name },
     defaults: {
       name,
       description,
       platforms,
-      image,
+      image, // Establecemos el valor de la propiedad "image" con la URL recibida
       date,
       rating,
     },
   });
   if (!created)
     return {
-      error: "No se puede crear, dado que ya existe el nombre: " + Nombre,
+      error: "No se puede crear, dado que ya existe el nombre: " + name,
     };
   let i = 0;
   // obtengo el array con los generos y creo las relaciones

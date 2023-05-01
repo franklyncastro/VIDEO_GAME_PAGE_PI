@@ -21,9 +21,6 @@
 
 .container:hover{
   color: #fff;
-}
-
-.container:hover{
   background-color: #1d1d1d;
   transition: all 0.7s ease-in;
 }
@@ -58,14 +55,14 @@
 
   .linkBtn:hover {
     color: #dc143ce7;
-}
-.linkBtn:focus{
-  color: #0dccee;
-} 
-  .linkBtn:focus:after,
-  .linkBtn:hover:after {
-    width: 100%;
-    left: 0%;
+  }
+  .linkBtn:focus{
+    color: #0dccee;
+  } 
+    .linkBtn:focus:after,
+    .linkBtn:hover:after {
+      width: 100%;
+      left: 0%;
   }
   
   .linkBtn:after {
@@ -81,3 +78,17 @@
     transition-duration: 400ms;
     transition-property: width, left;
   }
+
+
+
+ @media only screen and (max-width: 600px) {
+  .linkBtn{
+    font-size: 16px;
+  }
+}
+
+ @media only screen and (max-width: 500px) {
+  .linkBtn{
+    font-size: 12px;
+  }
+}

@@ -27,12 +27,12 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.TEXT,
-        defaultValue: "https://images2.alphacoders.com/106/1064201.png",
-        allowNull: true,
+        defaultValue: "https://assets.soyhenry.com/logoOG.png",
+        allowNull: false,
       },
       date: {
         type: DataTypes.DATEONLY,
-        allowNull: true,
+        allowNull: false,
       },
       rating: {
         type: DataTypes.FLOAT,

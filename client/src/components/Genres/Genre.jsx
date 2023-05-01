@@ -1,6 +1,7 @@
 const Genres = (genresAll) => {
   const { allGenres } = genresAll;
-  console.log(allGenres);
+
+
   return (
     <>
       {allGenres?.map((option, key) => (
