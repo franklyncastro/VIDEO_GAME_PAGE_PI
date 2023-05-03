@@ -38,15 +38,19 @@ export const Form = () => {
       case "searchGenres": {
         const selectedValues = [];
         const options = option;
+
         for (let i = 0; i < options.length; i++) {
+          
           if (options[i].selected) {
             selectedValues.push(options[i].value);
           }
         }
+
         setInput({
           ...input,
           searchGenres: selectedValues,
         });
+
         setSelectedGenres([...selectedGenres, ...selectedValues]);
         setError(
           validacionesForm(

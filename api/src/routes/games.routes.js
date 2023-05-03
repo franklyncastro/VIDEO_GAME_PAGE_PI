@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
   },
 });
 
-//? Aqui se guardan las imagenes cargadas a la DB
+//? Aqui se guardan las imagenes cargadas a la DB aun no implementado
 
 const upload = multer({ storage: storage }); 
 
