@@ -119,7 +119,7 @@ export const Form = () => {
       searchGenres: [],
     });
 
-    alert('Guardado con exito en la base de datos...!')
+
   };
 
   useEffect(() => {
@@ -200,6 +200,7 @@ export const Form = () => {
           name="platforms"
           onChange={handleChangeInput}
           value={input.platforms}
+          className={style.select}
         >
           <option hidden>Seleccionar plataforma</option>
           <Platforms />
@@ -215,6 +216,7 @@ export const Form = () => {
           name="searchGenres"
           onChange={handleChangeInput}
           value={input.searchGenres}
+          className={style.select}
         >
           <option hidden>Seleccionar genero</option>
           <Genres allGenres={allGenres} />

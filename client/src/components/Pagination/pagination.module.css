@@ -14,20 +14,31 @@
     text-decoration: none;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
      rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, 
-     rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+     rgba(238, 235, 235, 0.05) 0px 0px 0px 1px inset;
      border: 0.8px solid #5d0b0b;
      
   }
 
 
   .pagination .link:hover {
-    background-color: crimson;
-    color: #000;
+    background-color: #5d0b0b;
+    color: #fff;
     font-weight: 800;
 }
 
 .pagination .link:focus{
-  background-color: crimson;
-  color: #000;
+  background-color: #5d0b0b;
+  color: #fff;
   font-weight: 800;
 } 
+.active{
+  color: #fff;
+  background-color: #5d0b0b;
+    float: left;
+    padding: 10px 18px;
+    text-decoration: none;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 12px 28px 0px,
+     rgba(255, 255, 255, 0.1) 0px 2px 4px 0px, 
+     rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+     border: 0.8px solid #5d0b0b;
+}

@@ -11,7 +11,7 @@
 .container{
     display: flex;
     padding: 20px;
-    background-color: #dc143cd2;
+    background-color: #5d0b0b;
     transition: all 1s ease-in;
     align-items: center;
     justify-content: center;
@@ -22,6 +22,9 @@
 .container:hover{
   color: #fff;
   background-color: #1d1d1d;
+  box-shadow: rgba(245, 245, 245, 0.2) 0px 12px 28px 0px,
+     rgba(240, 239, 239, 0.1) 0px 2px 4px 0px, 
+     rgba(237, 234, 234, 0.05) 0px 0px 0px 1px inset;
   transition: all 0.7s ease-in;
 }
 .container_Link{

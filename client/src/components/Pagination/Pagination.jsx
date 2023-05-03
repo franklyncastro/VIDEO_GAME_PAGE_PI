@@ -1,12 +1,9 @@
 import style from "./pagination.module.css";
 import { Link } from "react-router-dom";
 
-const Pagination = ({ maxGamePage, allGames, pagination }) => {
+const Pagination = ({ maxPageGames, allGames, pagination, setCurrentPage, currentPage }) => {
   const pageNumbers = [];
-  const firstPage = 1;
-  const lastPage = Math.ceil(allGames / maxGamePage);
-  const isOnFirstPage = pagination === 1;
-  const isOnLastPage = pagination === lastPage;
+  const lastPage = Math.ceil(allGames / maxPageGames);
 
   for (let i = 1; i <= lastPage; i++) {
     pageNumbers.push(i);
@@ -14,30 +11,25 @@ const Pagination = ({ maxGamePage, allGames, pagination }) => {
 
   return (
     <div className={style.pagination}>
-      {!isOnFirstPage && (
-        <div>
-          <Link to="#" onClick={() => pagination(firstPage)} className={style.link}>
-            {"<<"}
-          </Link>
-        </div>
-      )}
-      {pageNumbers.map((numberPage) => {
-        return (
-          <div key={numberPage}>
-            <Link to="#" onClick={() => pagination(numberPage)} className={style.link}>
-              {numberPage}
-            </Link>
-          </div>
-        );
-      })}
-      {!isOnLastPage && (
-        <div>
-          <Link to="#" onClick={() => pagination(lastPage)} className={style.link}>
-            {">>"}
-          </Link>
-        </div>
-      )}
-    </div>
+  {currentPage > 1 && (
+    <Link className={style.link} onClick={() => setCurrentPage(currentPage - 1)}>Anterior</Link>
+  )}
+  {pageNumbers.map((numberPage) => {
+    return (
+      <Link
+        key={numberPage}
+        onClick={() => setCurrentPage(numberPage)}
+        className={currentPage === numberPage ? style.active : style.link}
+      >
+        {numberPage}
+      </Link>
+    );
+  })}
+  {currentPage < lastPage && (
+    <Link className={style.link} onClick={() => setCurrentPage(currentPage + 1)}>Siguiente</Link>
+  )}
+</div>
+
   );
 };
 

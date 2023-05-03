@@ -23,21 +23,24 @@ export const Home = () => {
   let allGames = useSelector((state) => state.rta);
   let showLoading = useSelector((state) => state.loading);
 
+  //Estado Paginado
   const [currentPage, setCurrentPage] = useState(1);
-  const maxGamePage = 8;
+  //Cantidad de juegos que se mostra por pagina
+  const maxPageGames = 8;
 
+  //Al montar el componente se ejecutan las siguientes acciones de Redux
   useEffect(() => {
-    dispatch(ShowLoading());
-    dispatch(GetAllGames());
-    dispatch(LoadGenres());
+    dispatch(ShowLoading());//Mostrar el Loading mientras se cargan los juegos
+    dispatch(GetAllGames());//Mostrar todos los Juegos
+    dispatch(LoadGenres());//Cargar los Generos
     return () => {
       dispatch(CleanRta());
       dispatch(CleanFilterGames());
     };
   }, [dispatch]);
 
-  const startLasGame = currentPage * maxGamePage;
-  const startFirstGame = startLasGame - maxGamePage;
+  const startLasGame = currentPage * maxPageGames;
+  const startFirstGame = startLasGame - maxPageGames;
   const CurrentGames = allGames?.slice(startFirstGame, startLasGame);
 
   const pagination = (pageNumber) => setCurrentPage(pageNumber);
@@ -54,16 +57,21 @@ export const Home = () => {
         : <div>  </div>
         }
           <Pagination
-            maxGamePage={maxGamePage}
+            maxPageGames={maxPageGames}
             allGames={allGames?.length}
             pagination={pagination}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
           />
 
           <Cards allGames={CurrentGames} />
+
           <Pagination
-            maxGamePage={maxGamePage}
+            maxPageGames={maxPageGames}
             allGames={allGames?.length}
             pagination={pagination}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
           />
         </div>
       )}
