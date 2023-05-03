@@ -14,3 +14,5 @@ const Genres = (genresAll) => {
 };
 
 export default Genres;
+
+

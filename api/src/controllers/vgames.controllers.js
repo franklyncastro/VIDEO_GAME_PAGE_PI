@@ -248,7 +248,7 @@ const createVideoGameDataBase = async (
   });
   if (!created)
     return {
-      error: "No se puede crear, dado que ya existe el nombre: " + name,
+      error: `El Juego con el nombre ${name} ya existe, intenta con otro`,
     };
   let i = 0;
   // obtengo el array con los generos y creo las relaciones

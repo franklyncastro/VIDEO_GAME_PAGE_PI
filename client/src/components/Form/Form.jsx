@@ -27,6 +27,8 @@ export const Form = () => {
     searchGenres: [],
   });
 
+  const [selectedGenres, setSelectedGenres] = useState([]);
+
   const handleChangeInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -45,13 +47,33 @@ export const Form = () => {
           ...input,
           searchGenres: selectedValues,
         });
+        setSelectedGenres([...selectedGenres, ...selectedValues]);
+        setError(
+          validacionesForm(
+            {
+              ...input,
+              [name]: selectedValues,
+            },
+            image
+          )
+        );
         break;
-      } //
+      }
       case "image": {
         setInput({
           ...input,
           [name]: value,
         });
+        
+        setError(
+          validacionesForm(
+            {
+              ...input,
+              [name]: value,
+            },
+            value
+          )
+        );
         break;
       }
       default: {
@@ -59,19 +81,24 @@ export const Form = () => {
           ...input,
           [name]: value,
         });
+        setError(
+          validacionesForm(
+            {
+              ...input,
+              [name]: value,
+            },
+            value
+          )
+        );
         break;
       }
     }
+  };
 
-    setError(
-      validacionesForm(
-        {
-          ...input,
-          [name]: value,
-        },
-        image
-      )
-    );
+  const handleRemoveGenre = (index) => {
+    const updatedGenres = [...selectedGenres];
+    updatedGenres.splice(index, 1);
+    setSelectedGenres(updatedGenres);
   };
 
   const handleSubmit = async (e) => {
@@ -86,8 +113,9 @@ export const Form = () => {
       data.append("platforms", input.platforms);
       data.append("date", input.date);
       data.append("rating", input.rating);
-      data.append("searchGenres", input.searchGenres);
       data.append("image", input.image);
+      const genres = input.searchGenres.join(",");
+      data.append("searchGenres", genres);
 
       try {
         const rta = await axios.post("videogames", data).then((res) => {
@@ -115,11 +143,10 @@ export const Form = () => {
       description: "",
       date: "",
       platforms: "",
-      image: '',
+      image: "",
       searchGenres: [],
     });
-
-
+    
   };
 
   useEffect(() => {
@@ -217,11 +244,20 @@ export const Form = () => {
           onChange={handleChangeInput}
           value={input.searchGenres}
           className={style.select}
+          multiple
         >
           <option hidden>Seleccionar genero</option>
           <Genres allGenres={allGenres} />
         </select>
       </div>
+
+      <span>
+        {selectedGenres.map((genre, index) => (
+          <button key={index} onClick={() => handleRemoveGenre(index)}>
+            {genre} X
+          </button>
+        ))}
+      </span>
 
       <span className={style.errors}>
         {error.searchGenres && <div> {error.searchGenres}</div>}
@@ -231,7 +267,7 @@ export const Form = () => {
       <div className={style.containerImg} value={input.image}>
         <label htmlFor="image">Ingrea la URL de la Imagen</label>
         <input
-          type="text"
+          type="url"
           name="image"
           className={style.url}
           onChange={handleChangeInput}

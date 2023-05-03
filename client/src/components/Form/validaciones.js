@@ -1,5 +1,6 @@
-export const validacionesForm = (input, file) => {
+export const validacionesForm = (input) => {
   const errors = {};
+  const patron = /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/;
 
   if (!input.name || input.name.trim().length < 4) {
     errors.name = "El nombre debe ser mayor a 4 caracteres";
@@ -26,7 +27,11 @@ export const validacionesForm = (input, file) => {
   }
 
   if (!input.image || input.image.trim().length < 1) {
-    errors.image = "Ingres la URL de la imagen";
+    errors.image = "Ingrese la URL de la imagen";
+  } else {
+    if (!patron.test(input.image)) {
+      errors.image = "La URL de la imagen es inválida";
+    }
   }
 
   return errors;
