@@ -9,7 +9,7 @@
     width: 750px;
     height: 400px;
     text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    box-shadow: rgba(252, 252, 252, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
     height: 780px;
     margin-top: 20px;
 
@@ -18,9 +18,14 @@
     transition: all 1s ease;
 }
 
+.container{animation:scale-up-top 0.4s; } @keyframes scale-up-top{0%{transform:scale(.5);transform-origin:center top}100%{transform:scale(1);transform-origin:center top}}
+
 .container:hover{
-    background-color: #312a2afc;
-    transition: all 1s ease;
+    background-color: #121212d1;
+    box-shadow: rgba(245, 245, 245, 0.2) 0px 12px 28px 0px,
+    rgba(240, 239, 239, 0.1) 0px 2px 4px 0px, 
+    rgba(237, 234, 234, 0.05) 0px 0px 0px 1px inset;
+    transition: all 0.7s ease-in;
     cursor: crosshair;
 }
 

@@ -13,6 +13,8 @@
     margin-top: 100px;
 
   }
+
+  .main{animation:scale-up-top 0.4s; } @keyframes scale-up-top{0%{transform:scale(.5);transform-origin:center top}100%{transform:scale(1);transform-origin:center top}}
   
   .up {
     display: flex;
@@ -87,7 +89,7 @@
     transition: .2s ease-in-out;
   }
   
-  .discord {
+  .linkedin {
     margin-top: -.9em;
     margin-left: -1.2em;
     fill: #8c9eff;
@@ -126,9 +128,9 @@
   .card4:hover {
     cursor: pointer;
     scale: 1.1;
-    background-color: #8c9eff;
+    background-color: #49f3e2;
   }
   
-  .card4:hover .discord {
+  .card4:hover .linkedin {
     fill: white;
   }
